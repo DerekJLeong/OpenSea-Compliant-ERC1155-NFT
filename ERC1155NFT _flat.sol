@@ -1456,6 +1456,11 @@ contract CupsOfJoe is ERC1155, Ownable, Pausable, ERC1155Supply {
         symbol = newSymbol;
     }
 
+    function withdraw() public onlyOwner {
+        (bool os, ) = payable(owner()).call{value: address(this).balance}("");
+        require(os);
+    }
+
 
     //
     //  Exposed Public Functions
