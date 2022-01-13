@@ -8,7 +8,7 @@ import "@openzeppelin/contracts/utils/Strings.sol";
 import "@openzeppelin/contracts/access/Ownable.sol";
 import "@openzeppelin/contracts/security/Pausable.sol";
 
-contract CupsOfJoe is ERC1155, Ownable, Pausable, ERC1155Supply {
+contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
     using Counters for Counters.Counter;
     Counters.Counter private tokenIds;
     uint256 public mintingCost;
