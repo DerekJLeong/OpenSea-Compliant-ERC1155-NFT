@@ -1335,7 +1335,7 @@ pragma solidity ^0.8.11;
 
 
 
-contract CupsOfJoe is ERC1155, Ownable, Pausable, ERC1155Supply {
+contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
     using Counters for Counters.Counter;
     Counters.Counter private tokenIds;
     uint256 public mintingCost;
