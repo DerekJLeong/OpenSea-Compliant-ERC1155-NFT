@@ -20,14 +20,13 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
     constructor()
         ERC1155("ipfs://<CID>/hidden")
     {
-        setName("<COLLECTION NAME>");
-        setSymbol("<COLLECTION SYMBOL>");
-        pause();
-        setHidden(true);
+        setMintingCost(0.03 ether);
         setMaxSupply(10000);
-        setMintingCost(0.01 ether);
+        setName("Cups of Joe");
+        setSymbol("Cup");
+        setHidden(true);
+        pause();
     }
-
 
     //
     // Modifiers
@@ -40,7 +39,6 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
         );
         _;
     }
-
 
     //
     // Internal Functions
@@ -56,7 +54,6 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
     ) internal override(ERC1155, ERC1155Supply) whenNotPaused {
         super._beforeTokenTransfer(operator, from, to, ids, amounts, data);
     }
-
 
     //
     //  OWNER ONLY Public Functions
@@ -100,7 +97,7 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
         _unpause();
     }
 
-        function setURI(string memory newuri) public onlyOwner {
+    function setURI(string memory newuri) public onlyOwner {
         _setURI(newuri);
     }
 
@@ -134,7 +131,6 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
         require(os);
     }
 
-
     //
     //  Exposed Public Functions
     //
@@ -162,6 +158,10 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
         }
     }
 
+    function currentSupply() public view returns (uint256) {
+        return tokenIds.current();
+    }
+
     // Returns uri of token id, for fetching metaData on OpenSea
     function tokenURI(uint256 _tokenId)
         public
@@ -172,9 +172,7 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
         require(exists(_tokenId), "ERC1155: URI query for nonexistent token");
 
         if (hidden) {
-            return string(
-                abi.encodePacked(uri(0),".json")
-                );
+            return string(abi.encodePacked(uri(0), "hidden.json"));
         }
 
         return
