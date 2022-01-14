@@ -1349,8 +1349,8 @@ contract CollectionNameHere is ERC1155, Ownable, Pausable, ERC1155Supply {
     {
         setMintingCost(0.03 ether);
         setMaxSupply(10000);
-        setName("Cups of Joe");
-        setSymbol("Cup");
+        setName("COLLECTION NAME HERE");
+        setSymbol("SYMBOL HERE");
         setHidden(true);
         pause();
     }
